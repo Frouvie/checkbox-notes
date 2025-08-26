@@ -1,27 +1,30 @@
 import json
-from pathlib import Path
-from typing import Dict
-from dataclasses import dataclass, field
 
-@dataclass
-class TaskModel():
-    name: str = ""
-    status: bool = False
-
-
-@dataclass
-class ListModel():
-    name: str = ""
-    tasks: Dict[int, TaskModel] = field(default_factory=dict)
+PATH = "data.json"
+data = {
+    "Anime": {
+        "Berserk": "False",
+        "Naruto": "False"
+    }
+}
 
 
-@dataclass
-class DataScheme():
-    lists: Dict[int, ListModel] = field(default_factory=dict)
+def load_data():
+    global data
+    with open(PATH, "r") as file:
+        data = json.load(file)
 
 
-class DataModel():
-    __file = Path("data.json")
-    
-    def __init__(self):
-        self.__data = DataScheme()
+def save_data():
+    with open(PATH, "w") as file:
+        json.dump(data, file, indent=4)
+
+
+def get_data():
+    return data
+
+
+def update_data(new_data):
+    global data
+    data = new_data
+    save_data()
