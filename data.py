@@ -1,13 +1,7 @@
 import json
 
 PATH = "data.json"
-data = {
-    "Anime": {
-        "Berserk": "False",
-        "Naruto": "False"
-    }
-}
-
+data = {}
 
 def load_data():
     global data
@@ -28,3 +22,6 @@ def update_data(new_data):
     global data
     data = new_data
     save_data()
+
+
+load_data()
