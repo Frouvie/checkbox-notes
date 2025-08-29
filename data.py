@@ -1,9 +1,13 @@
+import os
 import json
 
 PATH = "data.json"
 data = {}
 
 def load_data():
+    if not os.path.exists(PATH):
+        save_data()
+        return
     global data
     with open(PATH, "r") as file:
         data = json.load(file)
